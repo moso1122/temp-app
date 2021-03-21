@@ -16,12 +16,14 @@ async function KnowWeather(city){
         const get_icon = `http://openweathermap.org/img/wn/${icon}.png`
         main.innerHTML = 'temp' +  '  ' + Math.round((json.main.temp - 273)) + '°C'
         img.setAttribute('src',get_icon)
-        console.log(get_icon)
+        let map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: json.coord.lat, lng: json.coord.lon },
+          zoom: 15,
+        });
     }
     if (parseInt(json.cod) === 404) {
         alert(json.message) 
     }
-    console.log(json)
 } 
 
 form.addEventListener('submit',(event)=>{
